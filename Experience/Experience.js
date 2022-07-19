@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import GUI from "lil-gui";
 
 import Sizes from "./Utils/Sizes.js";
 import Time from "./Utils/Time.js";
@@ -17,7 +18,11 @@ export default class Experience {
             return Experience.instance;
         }
         Experience.instance = this;
+
         this.canvas = canvas;
+        this.setConfig();
+        this.setDebug();
+
         this.scene = new THREE.Scene();
         this.time = new Time();
         this.sizes = new Sizes();
@@ -32,6 +37,18 @@ export default class Experience {
         this.time.on("update", () => {
             this.update();
         });
+    }
+
+    setConfig() {
+        this.config = {};
+
+        this.config.debug = window.location.hash === "#debug";
+    }
+
+    setDebug() {
+        if (this.config.debug) {
+            this.debug = new GUI();
+        }
     }
 
     resize() {

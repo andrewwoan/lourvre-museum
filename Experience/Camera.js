@@ -8,29 +8,51 @@ export default class Camera {
         this.sizes = this.experience.sizes;
         this.scene = this.experience.scene;
         this.canvas = this.experience.canvas;
+        this.debug = this.experience.debug;
+        this.params = {
+            fov: 35,
+            aspect: this.sizes.aspect,
+            near: 0.1,
+            far: 1000,
+        };
 
-        this.createPerspectiveCamera();
-        this.setOrbitControls();
+        this.setPerspectiveCamera();
+        if (this.debug) {
+            this.setDebugCamera();
+            this.setOrbitControls();
+        }
     }
 
-    createPerspectiveCamera() {
+    setPerspectiveCamera() {
         this.perspectiveCamera = new THREE.PerspectiveCamera(
-            35,
-            this.sizes.aspect,
-            0.1,
-            1000
+            this.params.fov,
+            this.params.aspect,
+            this.params.near,
+            this.params.far
         );
         this.scene.add(this.perspectiveCamera);
-        this.perspectiveCamera.position.x = 29;
-        this.perspectiveCamera.position.y = 14;
-        this.perspectiveCamera.position.z = 12;
 
-        // this.helper = new THREE.CameraHelper(this.perspectiveCamera);
-        // this.scene.add(this.helper);
+        if (this.debug) {
+            this.helper = new THREE.CameraHelper(this.perspectiveCamera);
+            this.scene.add(this.helper);
+        }
+    }
+
+    setDebugCamera() {
+        this.debugCamera = new THREE.PerspectiveCamera(
+            this.params.fov,
+            this.params.aspect,
+            this.params.near,
+            this.params.far
+        );
+        this.scene.add(this.debugCamera);
+        this.debugCamera.position.x = 29;
+        this.debugCamera.position.y = 14;
+        this.debugCamera.position.z = 12;
     }
 
     setOrbitControls() {
-        this.controls = new OrbitControls(this.perspectiveCamera, this.canvas);
+        this.controls = new OrbitControls(this.debugCamera, this.canvas);
         this.controls.enableDamping = true;
         // this.controls.enableZoom = false;
     }
@@ -38,15 +60,20 @@ export default class Camera {
     resize() {
         this.perspectiveCamera.aspect = this.sizes.aspect;
         this.perspectiveCamera.updateProjectionMatrix();
+
+        if (this.debug) {
+            this.debugCamera.aspect = this.sizes.aspect;
+            this.debugCamera.updateProjectionMatrix();
+        }
     }
 
     update() {
-        // console.log(this.perspectiveCamera.position);
-        this.controls.update();
-
-        // this.helper.matrixWorldNeedsUpdate = true;
-        // this.helper.update();
-        // this.helper.position.copy(this.orthographicCamera.position);
-        // this.helper.rotation.copy(this.orthographicCamera.rotation);
+        if (this.debug) {
+            this.controls.update();
+            this.helper.matrixWorldNeedsUpdate = true;
+            this.helper.update();
+            this.helper.position.copy(this.perspectiveCamera.position);
+            this.helper.rotation.copy(this.perspectiveCamera.rotation);
+        }
     }
 }
