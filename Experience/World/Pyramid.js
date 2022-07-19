@@ -22,6 +22,11 @@ export default class Pyramid {
         this.pyramidTexture.flipY = false;
         this.pyramidTexture.encoding = THREE.sRGBEncoding;
 
+        // this.pyramid.children.find((child) => {
+        //     child.material = new THREE.MeshBasicMaterial({
+        //         map: this.pyramidTexture,
+        //     });
+        // });
         this.pyramid.children.find((child) => {
             child.material = new THREE.MeshBasicMaterial({
                 map: this.pyramidTexture,

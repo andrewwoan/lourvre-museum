@@ -3,6 +3,7 @@ import Experience from "../Experience.js";
 
 import { EventEmitter } from "events";
 import Pyramid from "./Pyramid.js";
+import Museum from "./Museum.js";
 
 export default class World extends EventEmitter {
     constructor() {
@@ -16,7 +17,8 @@ export default class World extends EventEmitter {
 
         this.resources.on("ready", () => {
             console.log(this.resources);
-            this.pyramid = new Pyramid();
+            this.museum = new Museum();
+            // this.pyramid = new Pyramid();
         });
     }
 
