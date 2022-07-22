@@ -15,6 +15,11 @@ export default [
         path: "/textures/PyramidReal.png",
     },
     {
+        name: "navmesh",
+        type: "glbModel",
+        path: "/models/N.glb",
+    },
+    {
         name: "museum",
         type: "glbModel",
         path: "/models/TestR.glb",

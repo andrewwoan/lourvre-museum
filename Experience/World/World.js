@@ -1,9 +1,14 @@
 import * as THREE from "three";
-import Experience from "../Experience.js";
 
 import { EventEmitter } from "events";
+
+import Experience from "../Experience.js";
 import Pyramid from "./Pyramid.js";
 import Museum from "./Museum.js";
+import Physics from "./Physics.js";
+import Controls from "./Controls.js";
+
+import Helpers from "../Utils/Helpers.js";
 
 export default class World extends EventEmitter {
     constructor() {
@@ -17,12 +22,22 @@ export default class World extends EventEmitter {
 
         this.resources.on("ready", () => {
             console.log(this.resources);
+            this.controls = new Controls();
+            // this.physics = new Physics();
             this.museum = new Museum();
+            this.helpers = new Helpers();
             // this.pyramid = new Pyramid();
         });
     }
 
     resize() {}
 
-    update() {}
+    update() {
+        if (this.physics) {
+            this.physics.update();
+        }
+        if (this.controls) {
+            this.controls.update();
+        }
+    }
 }

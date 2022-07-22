@@ -15,6 +15,7 @@ export default class Museum {
 
     setModel() {
         this.museum = this.resources.items.museum.scene;
+        this.navmesh = this.resources.items.navmesh.scene;
     }
 
     setMaterials() {
@@ -28,6 +29,13 @@ export default class Museum {
             });
         });
 
+        this.navmesh.children.find((child) => {
+            child.material = new THREE.MeshBasicMaterial({
+                map: this.museumTexture,
+            });
+        });
+
         this.scene.add(this.museum);
+        this.scene.add(this.navmesh);
     }
 }

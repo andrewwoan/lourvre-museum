@@ -10,7 +10,7 @@ export default class Camera {
         this.canvas = this.experience.canvas;
         this.debug = this.experience.debug;
         this.params = {
-            fov: 35,
+            fov: 75,
             aspect: this.sizes.aspect,
             near: 0.1,
             far: 1000,
@@ -31,6 +31,11 @@ export default class Camera {
             this.params.far
         );
         this.scene.add(this.perspectiveCamera);
+        // this.perspectiveCamera.position.z = 10;
+        this.perspectiveCamera.position.set(0, 0, 0);
+        this.perspectiveCamera.position.y = 2;
+        // this.perspectiveCamera.lookAt(0, 0, 1);
+        // this.perspectiveCamera.rotation.z = Math.PI;
 
         if (this.debug) {
             this.helper = new THREE.CameraHelper(this.perspectiveCamera);
@@ -46,9 +51,9 @@ export default class Camera {
             this.params.far
         );
         this.scene.add(this.debugCamera);
-        this.debugCamera.position.x = 29;
-        this.debugCamera.position.y = 14;
-        this.debugCamera.position.z = 12;
+        this.debugCamera.position.x = 47;
+        this.debugCamera.position.y = 23;
+        this.debugCamera.position.z = 30;
     }
 
     setOrbitControls() {
@@ -73,7 +78,7 @@ export default class Camera {
             this.helper.matrixWorldNeedsUpdate = true;
             this.helper.update();
             this.helper.position.copy(this.perspectiveCamera.position);
-            this.helper.rotation.copy(this.perspectiveCamera.rotation);
+            this.helper.quaternion.copy(this.perspectiveCamera.quaternion);
         }
     }
 }

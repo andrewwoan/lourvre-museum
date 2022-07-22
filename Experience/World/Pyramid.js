@@ -33,6 +33,6 @@ export default class Pyramid {
             });
         });
 
-        this.scene.add(this.pyramid);
+        // this.scene.add(this.pyramid);
     }
 }
