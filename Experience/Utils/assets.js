@@ -1,15 +1,5 @@
 export default [
     {
-        name: "pyramid",
-        type: "glbModel",
-        path: "/models/Pyramid.glb",
-    },
-    // {
-    //     name: "pyramidTexture",
-    //     type: "basisTexture",
-    //     path: "/textures/PyramidTest.ktx2",
-    // },
-    {
         name: "pyramidTexture",
         type: "imageTexture",
         path: "/textures/PyramidReal.png",
@@ -22,11 +12,16 @@ export default [
     {
         name: "museum",
         type: "glbModel",
-        path: "/models/TestR.glb",
+        path: "/models/B.glb",
     },
     {
         name: "museumTexture",
         type: "imageTexture",
-        path: "/textures/TestRender.png",
+        path: "/textures/B.png",
+    },
+    {
+        name: "landscape",
+        type: "glbModel",
+        path: "/models/L.glb",
     },
 ];

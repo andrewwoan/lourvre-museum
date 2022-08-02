@@ -32,7 +32,7 @@ export default class Camera {
         );
         this.scene.add(this.perspectiveCamera);
         // this.perspectiveCamera.position.z = 10;
-        this.perspectiveCamera.position.set(0, 0, 0);
+        this.perspectiveCamera.position.set(0, 0, 16);
         this.perspectiveCamera.position.y = 2;
         // this.perspectiveCamera.lookAt(0, 0, 1);
         // this.perspectiveCamera.rotation.z = Math.PI;

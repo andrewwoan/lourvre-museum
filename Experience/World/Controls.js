@@ -49,6 +49,7 @@ export default class Controls {
         this.cameraData = {};
         this.cameraData.velocity = new THREE.Vector3();
         this.cameraData.direction = new THREE.Vector3();
+        this.dummyVector = new THREE.Vector3();
 
         this.cameraData.directionalVectors = {
             direction: new THREE.Vector3(),
@@ -135,11 +136,6 @@ export default class Controls {
         document.addEventListener("keydown", this.keyboard.keyDown);
         document.addEventListener("keyup", this.keyboard.keyUp);
         document.addEventListener("mousemove", this.mouse.onMouseMove);
-
-        this.lastPos = true;
-        this.lastPoint = new THREE.Vector3();
-        this.playOnce = true;
-        this.dummyVector = new THREE.Vector3();
     }
 
     setRaycasterDirection(directionalVector) {
